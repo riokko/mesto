@@ -1,0 +1,20 @@
+@import url(./__like/element__like.css);
+@import url(./__name/element__name.css);
+@import url(./__photo/element__photo.css);
+@import url(./__title/element__title.css);
+
+
+.element {
+  max-height: 361px;
+  display: flex;
+  flex-direction: column;
+  max-width: 282px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 520px) {
+  .element {
+    max-width: 100%;
+  }
+}

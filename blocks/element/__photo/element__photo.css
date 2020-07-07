@@ -1,0 +1,11 @@
+.element__photo {
+  max-height: 282px;
+  max-width: 282px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 520px) {
+  .element__photo {
+    max-width: 100%;
+  }
+}

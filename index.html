@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+  </head>
+  <body class="page">
+    <div class="page__content">
+      <header class="header">
+        <div class="logo header__logo"></div>
+      </header>
+      <main>
+        <section class="profile section">
+          <img
+            class="profile__avatar"
+            src="./blocks/profile/__avatar/avatar.jpg"
+            alt="фото профиля"
+          />
+          <div class="profile__info">
+            <div class="profile__name">
+              <h1 class="profile__name-title">Жак-Ив Кусто</h1>
+              <div class="profile__edit-button"></div>
+            </div>
+            <p class="profile__profession">Исследователь океана</p>
+          </div>
+          <button class="profile__add-button">+</button>
+        </section>
+        <section class="elements section">
+          <ul class="elements__list">
+            <li class="element">
+              <img
+                src="./blocks/element/__photo/images/san-fran.jpg"
+                alt="Сан-Франциско"
+                class="element__photo"
+              />
+              <div class="element__title">
+                <h2 class="element__name">Сан-Франциско</h2>
+                <button class="element__like"></button>
+              </div>
+            </li>
+            <li class="element">
+              <img
+                src="./blocks/element/__photo/images/tokyo.jpg"
+                alt="Токио"
+                class="element__photo"
+              />
+              <div class="element__title">
+                <h2 class="element__name">Токио</h2>
+                <button class="element__like"></button>
+              </div>
+            </li>
+            <li class="element">
+              <img
+                src="./blocks/element/__photo/images/amster.jpg"
+                alt="Амстердам"
+                class="element__photo"
+              />
+              <div class="element__title">
+                <h2 class="element__name">Амстердам</h2>
+                <button class="element__like"></button>
+              </div>
+            </li>
+            <li class="element">
+              <img
+                src="./blocks/element/__photo/images/bushmills.jpg"
+                alt="Дорога гигантов"
+                class="element__photo"
+              />
+              <div class="element__title">
+                <h2 class="element__name">Дорога гигантов</h2>
+                <button class="element__like"></button>
+              </div>
+            </li>
+            <li class="element">
+              <img
+                src="./blocks/element/__photo/images/dubai.jpg"
+                alt="Дубаи"
+                class="element__photo"
+              />
+              <div class="element__title">
+                <h2 class="element__name">Дубаи</h2>
+                <button class="element__like"></button>
+              </div>
+            </li>
+            <li class="element">
+              <img
+                src="./blocks/element/__photo/images/portofino.jpg"
+                alt="Портофино"
+                class="element__photo"
+              />
+              <div class="element__title">
+                <h2 class="element__name">Портофино</h2>
+                <button class="element__like"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer section">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+      </footer>
+    </div>
+  </body>
+</html>
