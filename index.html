@@ -15,84 +15,84 @@
         <section class="profile section">
           <img
             class="profile__avatar"
-            src="./blocks/profile/__avatar/avatar.jpg"
+            src="./images/profile-avatar.jpg"
             alt="фото профиля"
           />
           <div class="profile__info">
             <div class="profile__name">
               <h1 class="profile__name-title">Жак-Ив Кусто</h1>
-              <button type="button" class="profile__edit-button"></button>
+              <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
             </div>
             <p class="profile__profession">Исследователь океана</p>
           </div>
-          <button class="profile__add-button">+</button>
+          <button class="profile__add-button" type="button"></button>
         </section>
         <section class="elements section">
           <ul class="elements__list">
             <li class="element">
               <img
-                src="./blocks/element/__photo/images/san-fran.jpg"
+                src="./images/elements/san-fran.jpg"
                 alt="Сан-Франциско"
                 class="element__photo"
               />
               <div class="element__title">
                 <h2 class="element__name">Сан-Франциско</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button"></button>
               </div>
             </li>
             <li class="element">
               <img
-                src="./blocks/element/__photo/images/tokyo.jpg"
+                src="./images/elements/tokyo.jpg"
                 alt="Токио"
                 class="element__photo"
               />
               <div class="element__title">
                 <h2 class="element__name">Токио</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button"></button>
               </div>
             </li>
             <li class="element">
               <img
-                src="./blocks/element/__photo/images/amster.jpg"
+                src="./images/elements/amster.jpg"
                 alt="Амстердам"
                 class="element__photo"
               />
               <div class="element__title">
                 <h2 class="element__name">Амстердам</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button"></button>
               </div>
             </li>
             <li class="element">
               <img
-                src="./blocks/element/__photo/images/bushmills.jpg"
+                src="./images/elements/bushmills.jpg"
                 alt="Дорога гигантов"
                 class="element__photo"
               />
               <div class="element__title">
                 <h2 class="element__name">Дорога гигантов</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button"></button>
               </div>
             </li>
             <li class="element">
               <img
-                src="./blocks/element/__photo/images/dubai.jpg"
+                src="./images/elements/dubai.jpg"
                 alt="Дубаи"
                 class="element__photo"
               />
               <div class="element__title">
                 <h2 class="element__name">Дубаи</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button"></button>
               </div>
             </li>
             <li class="element">
               <img
-                src="./blocks/element/__photo/images/portofino.jpg"
+                src="./images/elements/portofino.jpg"
                 alt="Портофино"
                 class="element__photo"
               />
               <div class="element__title">
                 <h2 class="element__name">Портофино</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button"></button>
               </div>
             </li>
           </ul>
@@ -106,9 +106,9 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form action="" class="edit-profile-form">
-          <input type="text" class="edit-profile-form__input edit-profile-form__input_type_name" value="">
-          <input type="text" class="edit-profile-form__input edit-profile-form__input_type_profession" value="">
+        <form class="edit-profile-form" name="edit-profile" method="GET">
+          <input type="text" class="edit-profile-form__input edit-profile-form__input_type_name" value="" name="name" placeholder="Имя" required>
+          <input type="text" class="edit-profile-form__input edit-profile-form__input_type_profession" value="" name="profession" placeholder="О себе" required>
           <button type="submit" class="edit-profile-form__button">Сохранить</button>
         </form>
       </div>

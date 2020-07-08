@@ -1,6 +1,7 @@
 @import url(./__container/popup__container.css);
 @import url(./__close-button/popup__close-button.css);
 @import url(./__title/popup__title.css);
+@import url(./_opened/popup_opened.css);
 
 .popup {
   position: fixed;
@@ -12,8 +13,4 @@
   display: none;
   justify-content: center;
   align-items: center;
-}
-
-.popup_opened {
-  display: flex;
 }

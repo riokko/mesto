@@ -5,10 +5,10 @@
 
 
 .element {
-  max-height: 361px;
+  min-height: 361px;
+  max-width: 282px;
   display: flex;
   flex-direction: column;
-  max-width: 282px;
   border-radius: 10px;
   overflow: hidden;
 }
