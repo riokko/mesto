@@ -8,7 +8,7 @@ let profileName = document.querySelector('.profile__name-title');
 let profileProfession = document.querySelector('.profile__profession');
 
 function togglePopup () {
-  popup.classList.toggle('popup_is-open');
+  popup.classList.toggle('popup_opened');
 }
 
 openEditProfileForm.addEventListener('click', () => {
