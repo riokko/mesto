@@ -2,12 +2,10 @@ let openEditProfileForm = document.querySelector(".profile__edit-button");
 let closeEditProfileForm = document.querySelector(".popup__close-button");
 let popup = document.querySelector(".popup");
 let profileForm = popup.querySelector(".edit-profile-form");
-let inputName = profileForm.querySelector(
-  ".edit-profile-form__input_type_name"
-);
-let inputProfession = profileForm.querySelector(
-  ".edit-profile-form__input_type_profession"
-);
+
+//переносы мне сделал Prettier, не заметила такой подставы :)
+let inputName = profileForm.querySelector(".edit-profile-form__input_type_name");
+let inputProfession = profileForm.querySelector(".edit-profile-form__input_type_profession");
 let profileName = document.querySelector(".profile__name-title");
 let profileProfession = document.querySelector(".profile__profession");
 
@@ -26,12 +24,15 @@ function listenerForEditButton() {
 
 //сохранение данных из формы и отправка в profile__name-title и profile__profession
 function saveDataFromEditForm(event) {
+  event.preventDefault();
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputProfession.value;
-  event.preventDefault();
   togglePopup();
 }
 
+// открывает форму редактирования профиля при клике на кнопку
 openEditProfileForm.addEventListener("click", listenerForEditButton);
+// закрывает форму редактирования
 closeEditProfileForm.addEventListener("click", togglePopup);
+// закрывает форму и сохраняет при нажатии на Сохраниить
 profileForm.addEventListener("submit", saveDataFromEditForm);

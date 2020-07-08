@@ -5,7 +5,6 @@
 
 
 .element {
-  min-height: 361px;
   max-width: 282px;
   display: flex;
   flex-direction: column;

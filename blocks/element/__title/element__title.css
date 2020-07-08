@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 80px;
   background-color: white;
-  padding: 0 21px;
+  padding: 25px 21px;
 }

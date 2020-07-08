@@ -8,11 +8,12 @@
   padding: 0;
   font-size: 18px;
   line-height: 1.22;
-  transition: opacity 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+  margin-bottom: 36px;
 }
 
 .edit-profile-form__button:hover {
-  opacity: 0.6;
+  background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer
 }
 
