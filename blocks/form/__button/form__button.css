@@ -1,4 +1,4 @@
-.edit-profile-form__button {
+.form__button {
   min-width: 358px;
   min-height: 50px;
   background-color: black;
@@ -12,13 +12,13 @@
   margin-bottom: 36px;
 }
 
-.edit-profile-form__button:hover {
+.form__button:hover {
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer
 }
 
 @media screen and (max-width:550px) {
-  .edit-profile-form__button {
+  .form__button {
     min-width: calc(100% - 36px);
     min-height: 45px;
   }

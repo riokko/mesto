@@ -1,4 +1,4 @@
-.edit-profile-form__input {
+.form__input {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   min-width: 358px;
@@ -11,21 +11,21 @@
   color: black;
 }
 
-.edit-profile-form__input:last-of-type {
+.form__input:last-of-type {
   margin-bottom: 55px;
 }
 
-.edit-profile-form__input:focus {
+.form__input:focus {
   outline-color: rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 550px) {
-  .edit-profile-form__input {
+  .form__input {
     min-width: calc(100% - 41px);
     min-height: 25px;
   }
 
-  .edit-profile-form__input:last-of-type {
+  .form__input:last-of-type {
     margin-bottom: 35px;
   }
 }

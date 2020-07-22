@@ -29,72 +29,6 @@
         </section>
         <section class="elements section">
           <ul class="elements__list">
-            <li class="element">
-              <img
-                src="./images/elements/san-fran.jpg"
-                alt="Сан-Франциско"
-                class="element__photo"
-              />
-              <div class="element__title">
-                <h2 class="element__name">Сан-Франциско</h2>
-                <button class="element__like" type="button" aria-label="Отметить место"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/elements/tokyo.jpg"
-                alt="Токио"
-                class="element__photo"
-              />
-              <div class="element__title">
-                <h2 class="element__name">Токио</h2>
-                <button class="element__like" type="button" aria-label="Отметить место"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/elements/amster.jpg"
-                alt="Амстердам"
-                class="element__photo"
-              />
-              <div class="element__title">
-                <h2 class="element__name">Амстердам</h2>
-                <button class="element__like" type="button" aria-label="Отметить место"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/elements/bushmills.jpg"
-                alt="Дорога гигантов"
-                class="element__photo"
-              />
-              <div class="element__title">
-                <h2 class="element__name">Дорога гигантов</h2>
-                <button class="element__like" type="button" aria-label="Отметить место"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/elements/dubai.jpg"
-                alt="Дубаи"
-                class="element__photo"
-              />
-              <div class="element__title">
-                <h2 class="element__name">Дубаи</h2>
-                <button class="element__like" type="button" aria-label="Отметить место"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/elements/portofino.jpg"
-                alt="Портофино"
-                class="element__photo"
-              />
-              <div class="element__title">
-                <h2 class="element__name">Портофино</h2>
-                <button class="element__like" type="button" aria-label="Отметить место"></button>
-              </div>
-            </li>
           </ul>
         </section>
       </main>
@@ -102,17 +36,42 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
     </div>
-    <div class="popup">
+    <div class="popup popup_type_edit-profile-form">
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть форму"></button>
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="edit-profile-form" name="edit-profile" method="GET">
-          <input type="text" class="edit-profile-form__input edit-profile-form__input_type_name" value="" name="name" placeholder="Имя" required>
-          <input type="text" class="edit-profile-form__input edit-profile-form__input_type_profession" value="" name="profession" placeholder="О себе" required>
-          <button type="submit" class="edit-profile-form__button">Сохранить</button>
+        <form class="form" name="edit-profile" method="GET">
+          <input type="text" class="form__input form__input_type_name" value="" name="name" placeholder="Имя" required>
+          <input type="text" class="form__input form__input_type_profession" value="" name="profession" placeholder="О себе" required>
+          <button type="submit" class="form__button">Сохранить</button>
         </form>
       </div>
     </div>
+    <div class="popup popup_type_new-item-form">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button" aria-label="Закрыть форму"></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form class="form" name="add-new-place" method="GET">
+          <input type="text" class="form__input form__input_type_place" value="" name="place" placeholder="Название" required>
+          <input type="text" class="form__input form__input_type_url" value="" name="url" placeholder="Ссылка на картинку" required>
+          <button type="submit" class="form__button">Создать</button>
+        </form>
+      </div>
+    </div>
+    <template class="template-element">
+      <li class="element">
+        <button class="element__delete" type="button" aria-label="Удалить место"></button>
+        <img
+          src=""
+          alt=""
+          class="element__photo"
+        />
+        <div class="element__title">
+          <h2 class="element__name"></h2>
+          <button class="element__like" type="button" aria-label="Отметить место"></button>
+        </div>
+      </li>
+  </template>
     <script src="scripts/index.js"></script>
   </body>
 </html>

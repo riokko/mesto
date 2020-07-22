@@ -1,3 +1,4 @@
+@import url(./__delete/element__delete.css);
 @import url(./__like/element__like.css);
 @import url(./__name/element__name.css);
 @import url(./__photo/element__photo.css);
@@ -10,6 +11,7 @@
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 @media screen and (max-width: 520px) {
