@@ -1,23 +1,30 @@
 // выбор элементов на странице
-const editProfilePopup = document.querySelector(".popup_type_edit-profile-form");
+const editProfilePopup = document.querySelector('.popup_type_edit-profile-form');
 const profileForm = document.querySelector('[name="edit-profile"]');
-const inputName = profileForm.querySelector(".form__input_type_name");
-const inputProfession = profileForm.querySelector(".form__input_type_profession");
+const addItemForm = document.querySelector('[name="add-item"]');
+const profileName = document.querySelector('.profile__name-title');
+const profileProfession = document.querySelector('.profile__profession');
 
-const elementsList = document.querySelector(".elements__list");
+const elementsList = document.querySelector('.elements__list');
 const cardTemplate = document.querySelector('.template-element').content.querySelector('.element');
 
-const addItemPopup = document.querySelector(".popup_type_new-item-form");
+const addItemPopup = document.querySelector('.popup_type_new-item-form');
+
+const photoPopup = document.querySelector('.popup_type_photo')
 
 // Выбор элементов формы редактирования профиля
-const openEditProfileButton = document.querySelector(".profile__edit-button");
-const closeEditProfileButton = editProfilePopup.querySelector(".popup__close-button");
-const profileName = document.querySelector(".profile__name-title");
-const profileProfession = document.querySelector(".profile__profession");
+const openEditProfileButton = document.querySelector('.profile__edit-button');
+const closeEditProfileButton = editProfilePopup.querySelector('.popup__close-button');
+const inputName = profileForm.querySelector('.form__input_type_name');
+const inputProfession = profileForm.querySelector('.form__input_type_profession');
 
 // Выбор элементов формы добавления нового места
-const openAddCardButton = document.querySelector(".profile__add-button");
-const closeAddCardButton = addItemPopup.querySelector(".popup__close-button");
+const openAddCardButton = document.querySelector('.profile__add-button');
+const closeAddCardButton = addItemPopup.querySelector('.popup__close-button');
+const inputPlace = addItemForm.querySelector('.form__input_type_place');
+const inputUrl = addItemForm.querySelector('.form__input_type_url');
+
+const closePhotoPopup = photoPopup.querySelector('.popup__close-button')
 
 const initialCards = [
   {
@@ -46,26 +53,36 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach((card) => {
-  const cardElement = cardTemplate.cloneNode(true);
-
-  const cardTitle = cardElement.querySelector('.element__name');
-  const cardImage = cardElement.querySelector('.element__photo');
-  const cardLikeButton = cardElement.querySelector('.element__like');
-
-  cardTitle.textContent = card.name;
-  cardImage.src = card.link;
-
-  elementsList.prepend(cardElement);
+initialCards.forEach((data) => {
+  renderElements(data);
 })
 
-//переключение класса popup_opened, который показывает окно или убирает
+function createElements(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitle = cardElement.querySelector('.element__name');
+  const cardImage = cardElement.querySelector('.element__photo');
+
+  cardTitle.textContent = data.name;
+  cardImage.src = data.link;
+
+  return cardElement;
+}
+
+function renderElements(data) {
+
+  elementsList.prepend(createElements(data));
+}
+
 function toggleEditProfilePopup() {
-  editProfilePopup.classList.toggle("popup_opened");
+  editProfilePopup.classList.toggle('popup_opened');
 }
 
 function toggleAddItemPopup() {
-  addItemPopup.classList.toggle("popup_opened");
+  addItemPopup.classList.toggle('popup_opened');
+}
+
+function togglePhotoPopup() {
+  photoPopup.classList.toggle('popup_opened')
 }
 
 function listenerForEditButton() {
@@ -74,7 +91,6 @@ function listenerForEditButton() {
   inputProfession.value = profileProfession.textContent;
 }
 
-//сохранение данных из формы и отправка в profile__name-title и profile__profession
 function saveDataFromEditForm(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
@@ -84,11 +100,42 @@ function saveDataFromEditForm(event) {
 
 function saveDataFromAddItemForm(event) {
   event.preventDefault();
-
+  renderElements({name: inputPlace.value, link: inputUrl.value});
+  toggleAddItemPopup();
 }
 
-openEditProfileButton.addEventListener("click", listenerForEditButton);
-closeEditProfileButton.addEventListener("click", toggleEditProfilePopup);
-profileForm.addEventListener("submit", saveDataFromEditForm);
+function doSmthWithCard(event) {
+  const eventTargetElement = event.target.closest('.element')
+  // тут лайкаем место
+  if (event.target.classList.contains('element__like')) {
+    event.target.classList.toggle('element__like_is_selected');
+  } // тут удаляем место
+  else if (event.target.classList.contains('element__delete')) {
+    eventTargetElement.remove()
+  } // тут раскрываем картинку
+  else if (event.target.classList.contains('element__photo')) {
+    event.preventDefault();
+    addDataToPhotoPopup(event);
+    togglePhotoPopup();
+  }
+}
+
+function addDataToPhotoPopup(event) {
+  const eventTargetElement = event.target.closest('.element')
+  const openPhotoClick = event.target.closest('.element__photo');
+  const openPhotoClickTitle = eventTargetElement.querySelector('.element__name');
+  const photoImage = document.querySelector('.popup__image');
+  const photoCaption = document.querySelector('.popup__caption');
+
+  photoImage.src = openPhotoClick.src;
+  photoCaption.textContent = openPhotoClickTitle.textContent;
+}
+
+openEditProfileButton.addEventListener('click', listenerForEditButton);
+closeEditProfileButton.addEventListener('click', toggleEditProfilePopup);
+profileForm.addEventListener('submit', saveDataFromEditForm);
 openAddCardButton.addEventListener('click', toggleAddItemPopup);
 closeAddCardButton.addEventListener('click', toggleAddItemPopup);
+addItemForm.addEventListener('submit', saveDataFromAddItemForm);
+elementsList.addEventListener('click', doSmthWithCard);
+closePhotoPopup.addEventListener('click', togglePhotoPopup)

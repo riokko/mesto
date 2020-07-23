@@ -4,7 +4,6 @@
 @import url(./__photo/element__photo.css);
 @import url(./__title/element__title.css);
 
-
 .element {
   max-width: 282px;
   display: flex;

@@ -4,7 +4,8 @@
   width: 24px;
   transition: opacity 200ms ease-in-out;
   background-color: transparent;
-  border: none
+  border: none;
+  outline: 0;
 }
 
 .profile__edit-button:hover {

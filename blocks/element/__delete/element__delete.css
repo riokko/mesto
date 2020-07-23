@@ -11,6 +11,7 @@
   top: 18px;
   right: 15px;
   transition: opacity 200ms ease-in-out;
+  outline: 0;
 }
 
 .element__delete:hover {

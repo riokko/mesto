@@ -1,0 +1,4 @@
+.popup__photo {
+  margin: auto;
+  object-fit: cover;
+}

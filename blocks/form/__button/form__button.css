@@ -10,6 +10,7 @@
   line-height: 1.22;
   transition: background-color 200ms ease-in-out;
   margin-bottom: 36px;
+  outline: 0;
 }
 
 .form__button:hover {

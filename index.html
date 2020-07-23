@@ -51,15 +51,22 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть форму"></button>
         <h3 class="popup__title">Новое место</h3>
-        <form class="form" name="add-new-place" method="GET">
+        <form class="form" name="add-item" method="GET">
           <input type="text" class="form__input form__input_type_place" value="" name="place" placeholder="Название" required>
           <input type="text" class="form__input form__input_type_url" value="" name="url" placeholder="Ссылка на картинку" required>
           <button type="submit" class="form__button">Создать</button>
         </form>
       </div>
     </div>
+    <div class="popup popup_type_photo">
+      <div class="popup__container popup__container_type_photo">
+        <button class="popup__close-button" type="button" aria-label="Закрыть форму"></button>
+        <img class="popup__image" src="" alt="">
+        <h3 class="popup__caption"></h3>
+      </div>
+    </div>
     <template class="template-element">
-      <li class="element">
+      <li class="element" data-id="">
         <button class="element__delete" type="button" aria-label="Удалить место"></button>
         <img
           src=""

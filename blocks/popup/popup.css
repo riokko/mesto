@@ -1,6 +1,9 @@
 @import url(./__container/popup__container.css);
 @import url(./__close-button/popup__close-button.css);
 @import url(./__title/popup__title.css);
+@import url(./__caption/popup__caption.css);
+@import url(./__image/popup__image.css);
+@import url(./__photo/popup__photo.css);
 
 .popup {
   position: fixed;
@@ -9,7 +12,11 @@
   background: rgba(0, 0, 0, 0.5);
   height: 100%;
   width: 100%;
-  display: none;
+  display: flex;
+  visibility: hidden;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
 }
