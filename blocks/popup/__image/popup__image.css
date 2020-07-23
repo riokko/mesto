@@ -2,3 +2,10 @@
   width: auto;
   max-height: calc(100vh - 180px);
 }
+
+@media screen and (max-width: 550px) {
+  .popup__image {
+    max-height: none;
+    max-width: calc(100vw - 80px);
+  }
+}

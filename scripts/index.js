@@ -11,6 +11,9 @@ const cardTemplate = document.querySelector('.template-element').content.querySe
 const addItemPopup = document.querySelector('.popup_type_new-item-form');
 
 const photoPopup = document.querySelector('.popup_type_photo')
+const photoImage = document.querySelector('.popup__image');
+const photoCaption = document.querySelector('.popup__caption');
+
 
 // Выбор элементов формы редактирования профиля
 const openEditProfileButton = document.querySelector('.profile__edit-button');
@@ -25,6 +28,7 @@ const inputPlace = addItemForm.querySelector('.form__input_type_place');
 const inputUrl = addItemForm.querySelector('.form__input_type_url');
 
 const closePhotoPopup = photoPopup.querySelector('.popup__close-button')
+
 
 const initialCards = [
   {
@@ -64,12 +68,12 @@ function createElements(data) {
 
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
+  cardImage.alt = data.name;
 
   return cardElement;
 }
 
 function renderElements(data) {
-
   elementsList.prepend(createElements(data));
 }
 
@@ -124,10 +128,9 @@ function addDataToPhotoPopup(event) {
   const eventTargetElement = event.target.closest('.element')
   const openPhotoClick = event.target.closest('.element__photo');
   const openPhotoClickTitle = eventTargetElement.querySelector('.element__name');
-  const photoImage = document.querySelector('.popup__image');
-  const photoCaption = document.querySelector('.popup__caption');
 
   photoImage.src = openPhotoClick.src;
+  photoImage.alt = openPhotoClick.alt;
   photoCaption.textContent = openPhotoClickTitle.textContent;
 }
 
@@ -139,3 +142,5 @@ closeAddCardButton.addEventListener('click', toggleAddItemPopup);
 addItemForm.addEventListener('submit', saveDataFromAddItemForm);
 elementsList.addEventListener('click', doSmthWithCard);
 closePhotoPopup.addEventListener('click', togglePhotoPopup)
+
+//Ролан, спасибо за ревью и приятные слова! Постаралась исправить все недочеты.
