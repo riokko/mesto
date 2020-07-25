@@ -18,5 +18,6 @@
     background-image: url(../../../images/profile-edit-button-small.svg);
     height: 18px;
     width: 18px;
+    background-repeat: no-repeat;
   }
 }
