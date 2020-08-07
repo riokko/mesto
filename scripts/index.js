@@ -1,3 +1,6 @@
+const POPUP_OPENED = 'popup_opened';
+const ESC_BUTTON_CODE = 27;
+const popupList = Array.from(document.querySelectorAll('.popup'));
 // выбор элементов на странице
 const editProfilePopup = document.querySelector('.popup_type_edit-profile-form');
 const profileForm = document.querySelector('[name="edit-profile"]');
@@ -77,20 +80,43 @@ function renderElements(data) {
   elementsList.prepend(createElements(data));
 }
 
-function toggleEditProfilePopup() {
-  editProfilePopup.classList.toggle('popup_opened');
+function closePopupHandler({target, currentTarget}) {
+  if (target === currentTarget) {
+    closePopup();
+  }
 }
 
-function toggleAddItemPopup() {
-  addItemPopup.classList.toggle('popup_opened');
+function openPopup(popup) {
+  popup.classList.add(POPUP_OPENED)
+  document.addEventListener('keyup', closePopupByEsc);
 }
 
-function togglePhotoPopup() {
-  photoPopup.classList.toggle('popup_opened')
+function closePopup() {
+  document.querySelector(`.${POPUP_OPENED}`).classList.remove(POPUP_OPENED);
+  document.removeEventListener('keyup', closePopupByEsc);
 }
 
-function listenerForEditButton() {
-  toggleEditProfilePopup();
+function closePopupByEsc ({keyCode}) {
+  console.log(keyCode);
+  if (keyCode === ESC_BUTTON_CODE) {
+    closePopup();
+  }
+}
+
+function editProfilePopupOpen() {
+  openPopup(editProfilePopup);
+}
+
+function addItemPopupOpen() {
+  openPopup(addItemPopup);
+}
+
+function photoPopupOpen() {
+  openPopup(photoPopup);
+}
+
+function listenEditButton() {
+  editProfilePopupOpen();
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
 }
@@ -99,13 +125,13 @@ function saveDataFromEditForm(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputProfession.value;
-  toggleEditProfilePopup();
+  closePopup();
 }
 
 function saveDataFromAddItemForm(event) {
   event.preventDefault();
   renderElements({name: inputPlace.value, link: inputUrl.value});
-  toggleAddItemPopup();
+  closePopup();
 }
 
 function doSmthWithCard(event) {
@@ -120,7 +146,7 @@ function doSmthWithCard(event) {
   else if (event.target.classList.contains('element__photo')) {
     event.preventDefault();
     addDataToPhotoPopup(event);
-    togglePhotoPopup();
+    photoPopupOpen();
   }
 }
 
@@ -134,13 +160,16 @@ function addDataToPhotoPopup(event) {
   photoCaption.textContent = openPhotoClickTitle.textContent;
 }
 
-openEditProfileButton.addEventListener('click', listenerForEditButton);
-closeEditProfileButton.addEventListener('click', toggleEditProfilePopup);
+openEditProfileButton.addEventListener('click', listenEditButton);
+closeEditProfileButton.addEventListener('click', closePopup);
 profileForm.addEventListener('submit', saveDataFromEditForm);
-openAddCardButton.addEventListener('click', toggleAddItemPopup);
-closeAddCardButton.addEventListener('click', toggleAddItemPopup);
+openAddCardButton.addEventListener('click', addItemPopupOpen);
+closeAddCardButton.addEventListener('click', closePopup);
 addItemForm.addEventListener('submit', saveDataFromAddItemForm);
 elementsList.addEventListener('click', doSmthWithCard);
-closePhotoPopup.addEventListener('click', togglePhotoPopup)
+closePhotoPopup.addEventListener('click', closePopup);
 
-//Ролан, спасибо за ревью и приятные слова! Постаралась исправить все недочеты.
+popupList.forEach((popup) => {
+  popup.addEventListener('click', closePopupHandler);
+});
+

@@ -1,6 +1,9 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
 @import url(../blocks/form/form.css);
+@import url(../blocks/form/__button/_disabled/form__button_disabled.css);
+@import url(../blocks/form/__error/_visible/form__error_visible.css);
+@import url(../blocks/form/__input/_type/form__input_type_invalid.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__like/_is_selected/element__like_is_selected.css);
 @import url(../blocks/elements/elements.css);
