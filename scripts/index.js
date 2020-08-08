@@ -97,7 +97,6 @@ function closePopup() {
 }
 
 function closePopupByEsc ({keyCode}) {
-  console.log(keyCode);
   if (keyCode === ESC_BUTTON_CODE) {
     closePopup();
   }

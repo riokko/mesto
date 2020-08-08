@@ -44,7 +44,7 @@ function setEventListeners(formElement) {
 }
 
 // Проверить валидность заполнения формы
-function isFormValid(inputList) {
+function isFormInvalid(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
@@ -52,7 +52,7 @@ function isFormValid(inputList) {
 
 // Добавить валидацию кнопки
 function toggleButtonState(inputList, buttonSubmit) {
-  if (!isFormValid(inputList)) {
+  if (!isFormInvalid(inputList)) {
     buttonSubmit.classList.remove(classesMap.inactiveButtonClass);
     buttonSubmit.disabled = false;
   } else {
