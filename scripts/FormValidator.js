@@ -65,13 +65,11 @@ class FormValidator {
 
   // Проверить валидностьзаполнения форм и сбросить дефолтное поведение сабмита
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._formSelector));
-    formList.forEach((form) => {
-      form.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-      });
-      this._setEventListeners(form);
+    const form = this._validationElement.querySelector(this._formSelector);
+    form.addEventListener('submit', function (evt) {
+      evt.preventDefault();
     });
+    this._setEventListeners(form);
   }
 }
 
