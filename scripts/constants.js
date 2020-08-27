@@ -34,3 +34,6 @@ export const classesMap = {
   errorClass: 'form__error_visible',
 };
 
+export const photoPopup = document.querySelector('.popup_type_photo');
+export const POPUP_OPENED = 'popup_opened';
+export const ESC_BUTTON_CODE = 'Escape';
