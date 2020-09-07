@@ -15,6 +15,7 @@ class Popup{
     close = () => {
         document.querySelector(`.${POPUP_OPENED}`).classList.remove(POPUP_OPENED);
         document.removeEventListener('keyup', this._handleEscClose);
+        document.removeEventListener('click', this._handleOverlayClose)
         this._closeButton.removeEventListener('click', this.close);
     }
 
@@ -24,8 +25,15 @@ class Popup{
         };
     }
 
+    _handleOverlayClose = (e) => {
+        if (e.target.classList.contains(POPUP_OPENED)) {
+            this.close();
+        }
+    }
+
     setEventListeners = () => {
         this._closeButton.addEventListener('click', this.close);
+        document.addEventListener('click', this._handleOverlayClose)
     }
 }
 

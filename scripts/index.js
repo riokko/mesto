@@ -1,7 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import PopupWithImage from "./PopupWithImage.js";
-// import { closePopup, openPopup } from "./utils.js";
 import {classesMap, initialCards} from "./constants.js";
 
 const popupList = Array.from(document.querySelectorAll(".popup"));
@@ -83,7 +82,3 @@ profileForm.addEventListener("submit", saveDataFromEditForm);
 openAddCardButton.addEventListener("click", addItemPopupOpen);
 // closeAddCardButton.addEventListener("click", closePopup);
 addItemForm.addEventListener("submit", saveDataFromAddItemForm);
-
-// popupList.forEach((popup) => {
-//   popup.addEventListener("click", closePopupHandler);
-// });
