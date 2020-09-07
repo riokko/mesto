@@ -1,14 +1,9 @@
-import {photoPopup} from './constants.js';
-import {openPopup} from './utils.js';
-
 class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._title = data.name;
     this._image = data.link;
     this._cardSelector = cardSelector;
-    this._popup = document.querySelector('.popup_type_photo');
-    this._popupImage = this._popup.querySelector('.popup__image');
-    this._popupCaption = this._popup.querySelector('.popup__caption');
+    this._handleCardClick = handleCardClick;
   }
 
   _remove = () => {
@@ -22,10 +17,7 @@ class Card {
   }
 
   _previewPicture = () => {
-    this._popupImage.src = this._image;
-    this._popupImage.alt = this._title;
-    this._popupCaption.textContent = this._title;
-    openPopup(photoPopup);
+    this._handleCardClick();
   }
 
   _setEventListeners() {

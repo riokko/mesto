@@ -1,52 +1,54 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import {closePopup, openPopup} from './utils.js';
-import {classesMap, initialCards, photoPopup} from './constants.js';
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import PopupWithImage from "./PopupWithImage.js";
+// import { closePopup, openPopup } from "./utils.js";
+import {classesMap, initialCards} from "./constants.js";
 
-const popupList = Array.from(document.querySelectorAll('.popup'));
+const popupList = Array.from(document.querySelectorAll(".popup"));
 
 // выбор элементов на странице
-const editProfilePopup = document.querySelector('.popup_type_edit-profile-form');
+const editProfilePopup = document.querySelector(
+  ".popup_type_edit-profile-form"
+);
 const profileForm = document.querySelector('[name="edit-profile"]');
 const addItemForm = document.querySelector('[name="add-item"]');
-const profileName = document.querySelector('.profile__name-title');
-const profileProfession = document.querySelector('.profile__profession');
+const profileName = document.querySelector(".profile__name-title");
+const profileProfession = document.querySelector(".profile__profession");
 
-const elementsList = document.querySelector('.elements__list');
+const elementsList = document.querySelector(".elements__list");
 
-const addItemPopup = document.querySelector('.popup_type_new-item-form');
+const addItemPopup = document.querySelector(".popup_type_new-item-form");
 
 // Выбор элементов формы редактирования профиля
-const openEditProfileButton = document.querySelector('.profile__edit-button');
-const closeEditProfileButton = editProfilePopup.querySelector('.popup__close-button');
-const inputName = profileForm.querySelector('.form__input_type_name');
-const inputProfession = profileForm.querySelector('.form__input_type_profession');
+const openEditProfileButton = document.querySelector(".profile__edit-button");
+const closeEditProfileButton = editProfilePopup.querySelector(
+  ".popup__close-button"
+);
+const inputName = profileForm.querySelector(".form__input_type_name");
+const inputProfession = profileForm.querySelector(
+  ".form__input_type_profession"
+);
 
 // Выбор элементов формы добавления нового места
-const openAddCardButton = document.querySelector('.profile__add-button');
-const closeAddCardButton = addItemPopup.querySelector('.popup__close-button');
-const inputPlace = addItemForm.querySelector('.form__input_type_place');
-const inputUrl = addItemForm.querySelector('.form__input_type_url');
-
-const closePhotoPopup = photoPopup.querySelector('.popup__close-button');
+const openAddCardButton = document.querySelector(".profile__add-button");
+const closeAddCardButton = addItemPopup.querySelector(".popup__close-button");
+const inputPlace = addItemForm.querySelector(".form__input_type_place");
+const inputUrl = addItemForm.querySelector(".form__input_type_url");
 
 new FormValidator(addItemPopup, classesMap).enableValidation();
 new FormValidator(editProfilePopup, classesMap).enableValidation();
 
 function renderElements(data) {
-  const cardItem = new Card(data, '.template-element');
+  const cardItem = new Card(data, ".template-element", () => {
+    photoPopup.open();
+  });
+  const photoPopup = new PopupWithImage(data, ".popup_type_photo");
   elementsList.prepend(cardItem.getView());
 }
 
 initialCards.forEach((data) => {
   renderElements(data);
 });
-
-function closePopupHandler({target, currentTarget}) {
-  if (target === currentTarget) {
-    closePopup();
-  }
-}
 
 function editProfilePopupOpen() {
   openPopup(editProfilePopup);
@@ -71,18 +73,17 @@ function saveDataFromEditForm(event) {
 
 function saveDataFromAddItemForm(event) {
   event.preventDefault();
-  renderElements({name: inputPlace.value, link: inputUrl.value});
+  renderElements({ name: inputPlace.value, link: inputUrl.value });
   closePopup();
 }
 
-openEditProfileButton.addEventListener('click', listenEditButton);
-closeEditProfileButton.addEventListener('click', closePopup);
-profileForm.addEventListener('submit', saveDataFromEditForm);
-openAddCardButton.addEventListener('click', addItemPopupOpen);
-closeAddCardButton.addEventListener('click', closePopup);
-addItemForm.addEventListener('submit', saveDataFromAddItemForm);
-closePhotoPopup.addEventListener('click', closePopup);
+openEditProfileButton.addEventListener("click", listenEditButton);
+// closeEditProfileButton.addEventListener("click", closePopup);
+profileForm.addEventListener("submit", saveDataFromEditForm);
+openAddCardButton.addEventListener("click", addItemPopupOpen);
+// closeAddCardButton.addEventListener("click", closePopup);
+addItemForm.addEventListener("submit", saveDataFromAddItemForm);
 
-popupList.forEach((popup) => {
-  popup.addEventListener('click', closePopupHandler);
-});
+// popupList.forEach((popup) => {
+//   popup.addEventListener("click", closePopupHandler);
+// });
