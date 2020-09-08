@@ -15,7 +15,7 @@ class Popup{
     close = () => {
         document.querySelector(`.${POPUP_OPENED}`).classList.remove(POPUP_OPENED);
         document.removeEventListener('keyup', this._handleEscClose);
-        document.removeEventListener('click', this._handleOverlayClose)
+        document.removeEventListener('click', this._handleOverlayClose);
         this._closeButton.removeEventListener('click', this.close);
     }
 
