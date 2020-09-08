@@ -1,0 +1,7 @@
+@import url(src/blocks/form/__button/form__button.css);
+@import url(src/blocks/form/__input/form__input.css);
+@import url(src/blocks/form/__error/form__error.css);
+
+.form {
+  padding: 0 0 0 36px;
+}
