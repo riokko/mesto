@@ -1,5 +1,5 @@
 .element__like {
-  background-image: url(src/images/element-like.svg);
+  background-image: url('../../../images/element-like.svg');
   height: 18px;
   width: 22px;
   padding: 0 0 0 21px;

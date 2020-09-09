@@ -1,4 +1,4 @@
-@import url(src/blocks/page/__content/page__content.css);
+@import url(./__content/page__content.css);
 
 .page {
   background-color: black;
