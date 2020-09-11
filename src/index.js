@@ -1,12 +1,12 @@
-import '../pages/index.css';
+import "./index.css";
 
-import Card from "./Card.js";
-import Section from "./Section.js";
-import FormValidator from "./FormValidator.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
-import {classesMap, initialCards} from "./constants.js";
+import Card from "./components/Card.js";
+import Section from "./components/Section.js";
+import FormValidator from "./components/FormValidator.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import UserInfo from "./components/UserInfo.js";
+import {classesMap, initialCards} from "./utils/constants.js";
 
 const openEditProfileButton = document.querySelector(".profile__edit-button");
 const openAddCardButton = document.querySelector(".profile__add-button");
@@ -29,16 +29,27 @@ const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const cardItem = new Card(item, ".template-element", () => {
-        photoPopup.open();
-      });
-      const cardElement = cardItem.getView();
-      const photoPopup = new PopupWithImage(item, ".popup_type_photo");
-      cardsList.addItem(cardElement);
+      cardRenderer(item);
     },
   },
   ".elements__list"
 );
+//
+
+const photoPopup = new PopupWithImage(".popup_type_photo");
+
+function renderMapping({ place, url }) {
+  cardRenderer({ name: place, link: url });
+}
+
+function cardRenderer(cardData) {
+  const newCard = new Card(cardData, ".template-element", () => {
+    photoPopup.open(cardData);
+  });
+  const cardElement = newCard.getView();
+
+  cardsList.addItem(cardElement);
+}
 
 cardsList.renderItem();
 
@@ -62,26 +73,13 @@ const editProfilePopup = new PopupWithForm(
   userInfo.setUserInfo
 );
 
-function renderElementsWithMapping({ place, url }) {
-  const newCard = new Card(
-    { name: place, link: url },
-    ".template-element",
-    () => {
-      photoPopup.open();
-    }
-  );
-  const cardElement = newCard.getView();
-  const photoPopup = new PopupWithImage(
-    { name: place, link: url },
-    ".popup_type_photo"
-  );
-  cardsList.addItem(cardElement);
-}
-
 const addCardPopup = new PopupWithForm(
   ".popup_type_new-item-form",
-  renderElementsWithMapping
+  renderMapping
 );
 
 openEditProfileButton.addEventListener("click", openEditProfileHandler);
-openAddCardButton.addEventListener("click", addCardPopup.open);
+openAddCardButton.addEventListener(
+  "click",
+  addCardPopup.open.bind(addCardPopup)
+);
