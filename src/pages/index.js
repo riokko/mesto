@@ -1,12 +1,12 @@
 import "./index.css";
 
-import Card from "./components/Card.js";
-import Section from "./components/Section.js";
-import FormValidator from "./components/FormValidator.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import UserInfo from "./components/UserInfo.js";
-import {classesMap, initialCards} from "./utils/constants.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import {classesMap, initialCards} from "../utils/constants.js";
 
 const openEditProfileButton = document.querySelector(".profile__edit-button");
 const openAddCardButton = document.querySelector(".profile__add-button");
@@ -29,7 +29,7 @@ const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      cardRenderer(item);
+      cardRenderer(item, true);
     },
   },
   ".elements__list"
@@ -39,16 +39,16 @@ const cardsList = new Section(
 const photoPopup = new PopupWithImage(".popup_type_photo");
 
 function renderMapping({ place, url }) {
-  cardRenderer({ name: place, link: url });
+  cardRenderer({ name: place, link: url }, false);
 }
 
-function cardRenderer(cardData) {
+function cardRenderer(cardData, shouldPrepend) {
   const newCard = new Card(cardData, ".template-element", () => {
     photoPopup.open(cardData);
   });
   const cardElement = newCard.getView();
 
-  cardsList.addItem(cardElement);
+  cardsList.addItem(cardElement, shouldPrepend);
 }
 
 cardsList.renderItem();
