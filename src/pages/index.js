@@ -1,8 +1,9 @@
 import "./index.css";
 
+import Api from "../components/Api.js"
 import Card from "../components/Card.js";
-import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -83,3 +84,16 @@ openAddCardButton.addEventListener(
   "click",
   addCardPopup.open.bind(addCardPopup)
 );
+
+const api = new Api ({
+    url: "https://mesto.nomoreparties.co/v1/cohort-15/cards/",
+    headers: {
+        "Content-Type": "application/json",
+        authorization: "0ffb4600-da7b-4a50-ad82-6478aae818d7"
+    }
+})
+
+const cards = api.getInitialCards();
+cards.then((data) => {
+    console.log(data);
+})
