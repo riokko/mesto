@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   devtool: "source-map",
-  entry: { main: "./src/pages/index.js" },
+  entry: ["@babel/polyfill", "./src/pages/index.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",

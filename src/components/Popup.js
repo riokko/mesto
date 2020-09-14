@@ -1,4 +1,4 @@
-import {ESC_BUTTON_CODE} from "../utils/constants.js";
+const ESC_BUTTON_CODE = "Escape";
 
 class Popup {
   constructor(popupSelector) {

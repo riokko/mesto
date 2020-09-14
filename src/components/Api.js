@@ -1,20 +1,16 @@
 class Api {
-    constructor(config) {
-        this._url = config.url;
-        this._headers = config.headers;
-    }
+  constructor(config) {
+    this._url = config.url;
+    this._headers = config.headers;
+  }
 
-    getInitialCards() {
-        return fetch(this._url, {
-            method: "GET",
-            headers: this._headers,
-        }).then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`)
-        });
+  async getInitialCards() {
+    const response = await fetch(this._url, { headers: this._headers });
+    if (response.ok) {
+      return response.json();
     }
+    return Promise.reject(`Ошибка: ${response.status}`);
+  }
 }
 
-export default Api
+export default Api;
