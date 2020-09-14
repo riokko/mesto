@@ -28,8 +28,8 @@ class Api {
             headers: this._getHeaders(),
             method: 'PATCH',
             body: JSON.stringify({
-                name: name,
-                about: about,
+                name,
+                about,
             }),
         });
         return this._defaultRequestReturn(response);
@@ -42,10 +42,14 @@ class Api {
         return this._defaultRequestReturn(response);
     }
 
-    async addCard() {
+    async addCard({ name, link }) {
         const response = await fetch(this._url, {
             headers: this._getHeaders(),
             method: 'POST',
+            body: JSON.stringify({
+                name,
+                link,
+            }),
         });
         return this._defaultRequestReturn(response);
     }

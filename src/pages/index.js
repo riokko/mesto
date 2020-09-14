@@ -52,11 +52,11 @@ const openEditProfileHandler = () => {
     editProfilePopup.open();
 };
 
-const addCardPopup = new PopupWithForm('.popup_type_new-item-form', renderMapping);
-
-function renderMapping({ place, url }) {
-    cardRenderer({ name: place, link: url }, false);
-}
+const addCardPopup = new PopupWithForm('.popup_type_new-item-form', (cardData) => {
+    apiCards.addCard(cardData).then((data) => {
+        cardRenderer(data);
+    });
+});
 
 function cardRenderer(cardData, shouldPrepend) {
     const newCard = new Card(cardData, '.template-element', () => {
@@ -79,7 +79,7 @@ cardsList.renderItem();
 
 apiCards.getInitialCards().then((cards) => {
     cards.forEach((card) => {
-        cardRenderer(card);
+        cardRenderer(card, true);
     });
 });
 
