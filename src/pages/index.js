@@ -23,7 +23,6 @@ const apiCards = new Api({
 
 const apiUser = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-15/users/me/',
-    method: 'PATCH',
 });
 
 const cardsList = new Section(
