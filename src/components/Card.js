@@ -1,20 +1,21 @@
 class Card {
-    constructor({ name, link, likes, _id }, cardSelector, handleCardClick) {
+    constructor({ name, link, likes, cardSelector, handleCardClick, handleRemoveCard }) {
         this._title = name;
         this._image = link;
         this._likes = likes;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
-        this._id = _id;
-        // this._removeCardPopup = new PopupWithSubmit()
+        this._handleRemoveCard = handleRemoveCard;
     }
 
-    _remove = () => {
-        // this._view.remove();
-        // this._view = null;
-        console.log(this._id);
-        this._handleCardRemove();
+    _delete = () => {
+        this._handleRemoveCard();
     };
+
+    remove() {
+        this._view.remove();
+        this._view = null;
+    }
 
     _like = () => {
         const likeButton = this._view.querySelector('.element__like');
@@ -26,7 +27,7 @@ class Card {
     };
 
     _setEventListeners() {
-        this._view.querySelector('.element__delete').addEventListener('click', this._remove);
+        this._view.querySelector('.element__delete').addEventListener('click', this._delete);
         this._view.querySelector('.element__like').addEventListener('click', this._like);
         this._view.querySelector('.element__photo').addEventListener('click', this._previewPicture);
     }
