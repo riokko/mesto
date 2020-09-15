@@ -8,6 +8,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import {classesMap} from '../utils/constants.js';
+import PopupWithSubmit from "../components/PopupWithSubmit";
 
 const openEditProfileButton = document.querySelector('.profile__edit-button');
 const openAddCardButton = document.querySelector('.profile__add-button');
@@ -23,6 +24,10 @@ const apiCards = new Api({
 
 const apiUser = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-15/users/me/',
+});
+
+const removeCardPopup = new PopupWithSubmit('.popup_type_card-remove', () => {
+    console.log('куку');
 });
 
 const cardsList = new Section(
@@ -47,6 +52,7 @@ const editProfilePopup = new PopupWithForm('.popup_type_edit-profile-form', (use
     });
 });
 
+
 const openEditProfileHandler = () => {
     listenEditButton(userInfo.getUserInfo());
     editProfilePopup.open();
@@ -61,7 +67,8 @@ const addCardPopup = new PopupWithForm('.popup_type_new-item-form', (cardData) =
 function cardRenderer(cardData, shouldPrepend) {
     const newCard = new Card(cardData, '.template-element', () => {
         photoPopup.open(cardData);
-    });
+    },
+        removeCardPopup.open.bind(removeCardPopup));
     const cardElement = newCard.getView();
 
     cardsList.addItem(cardElement, shouldPrepend);

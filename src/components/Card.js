@@ -1,14 +1,19 @@
 class Card {
-    constructor(data, cardSelector, handleCardClick) {
-        this._title = data.name;
-        this._image = data.link;
+    constructor({ name, link, likes, _id }, cardSelector, handleCardClick) {
+        this._title = name;
+        this._image = link;
+        this._likes = likes;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        this._id = _id;
+        // this._removeCardPopup = new PopupWithSubmit()
     }
 
     _remove = () => {
-        this._view.remove();
-        this._view = null;
+        // this._view.remove();
+        // this._view = null;
+        console.log(this._id);
+        this._handleCardRemove();
     };
 
     _like = () => {
@@ -38,6 +43,7 @@ class Card {
 
         const photo = this._view.querySelector('.element__photo');
         this._view.querySelector('.element__name').textContent = this._title;
+        this._view.querySelector('.element__likes').textContent = this._likes.length;
         photo.src = this._image;
         photo.alt = this._title;
 

@@ -53,6 +53,14 @@ class Api {
         });
         return this._defaultRequestReturn(response);
     }
+
+    async removeCard(url) {
+        const response = await fetch(url, {
+            headers: this._getHeaders(),
+            method: 'DELETE',
+        });
+        return this._defaultRequestReturn(response);
+    }
 }
 
 export default Api;
