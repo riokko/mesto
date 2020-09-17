@@ -1,6 +1,6 @@
 import Popup from './Popup.js';
-import FormValidator from './FormValidator.js';
-import {classesMap} from '../utils/constants';
+import FormValidator from './FormValidatr.js';
+import { classesMap } from '../utils/constants';
 
 class PopupWithForm extends Popup {
     constructor(popupSelector, handleFormSubmit) {
@@ -9,7 +9,7 @@ class PopupWithForm extends Popup {
         this._inputList = this._popup.querySelectorAll('.form__input');
 
         this._formValidator = new FormValidator(document.querySelector('.popup_type_new-item-form'), classesMap);
-        this._reset = this._formValidator.reset.bind(this._formValidator);
+        this.reset = this._formValidator.reset.bind(this._formValidator);
     }
 
     _getInputValues = () => {
@@ -22,10 +22,34 @@ class PopupWithForm extends Popup {
 
     _submit = (event) => {
         event.preventDefault();
-        this._handleFormSubmit(this._getInputValues());
-        this.close();
-        this._reset(this._inputList);
+        this.toggleLoadingState(true);
+        this._handleFormSubmit(this._getInputValues()).then(() => {
+            this.close();
+            this.reset(this._inputList);
+
+        }).catch((data) => {
+            if (data.errors) {
+                this.displayError(data.errors);
+            } else {
+                console.log(data);
+            }
+        }
+        ).finally(() => {
+            this.toggleLoadingState(false);
+        });
     };
+
+    displayError = (errors) => {
+        Object.entries(errors).forEach( ([key, value]) => {
+            const input = this._popup.querySelector(`[name=${key}]`)
+            const errorElement = this._popup.querySelector(`#${input.id}-error`);
+            this._formValidator.showInputError(errorElement, input, value.message);
+        });
+    };
+
+    toggleLoadingState = (state) => {
+        this._popup.querySelector('.form__button').textContent = state ? 'Сохранение...' : 'Сохранить';
+    }
 
     setEventListeners() {
         super.setEventListeners();

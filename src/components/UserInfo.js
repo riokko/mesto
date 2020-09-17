@@ -12,11 +12,16 @@ class UserInfo {
         };
     };
 
-    setUserInfo = (data) => {
-        this._name.textContent = data.name;
-        this._about.textContent = data.about;
-        this._avatar.src = data.avatar;
+    setUserInfo = ({ name, about, avatar, _id }) => {
+        this._name.textContent = name;
+        this._about.textContent = about;
+        this._avatar.src = avatar;
+        this._id = _id;
     };
+
+    getUserId = () => {
+        return this._id;
+    }
 }
 
 export default UserInfo;

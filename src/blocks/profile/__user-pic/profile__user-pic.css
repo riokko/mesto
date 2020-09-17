@@ -1,0 +1,17 @@
+.profile__user-pic {
+    width: 120px;
+    height: 120px;
+    margin: 0 30px 0 0;
+    border-radius: 50%;
+    transition: opacity 200ms ease-in-out;
+    position: relative;
+}
+
+.profile__user-pic:hover .profile__pen {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.profile__user-pic:hover .profile__avatar {
+    opacity: .5;
+}

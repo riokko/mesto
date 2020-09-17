@@ -1,4 +1,5 @@
 @import url(./__delete/element__delete.css);
+@import url(./__delete/_hidden/element__delete_hidden.css);
 @import url(./__likes-container/element_likes-container.css);
 @import url(./__like/element__like.css);
 @import url(./__likes/element__likes.css);

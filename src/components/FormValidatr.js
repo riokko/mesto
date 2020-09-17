@@ -12,10 +12,10 @@ class FormValidator {
     }
 
     // Показывать ошибку при неправильном заполнении форм
-    _showInputError(errorElement, input) {
+    showInputError(errorElement, input, message) {
         errorElement.classList.add(this._errorClass);
         input.classList.add(this._inputInvalidClass);
-        errorElement.textContent = input.validationMessage;
+        errorElement.textContent = message ? message : input.validationMessage;
     }
 
     // Убирать ошибку при правильном заполнении формы
@@ -29,7 +29,7 @@ class FormValidator {
     _checkInputValidity(input) {
         const errorElement = this._form.querySelector(`#${input.id}-error`);
         if (!input.validity.valid) {
-            this._showInputError(errorElement, input);
+            this.showInputError(errorElement, input);
         } else {
             this._hideInputError(errorElement, input);
         }

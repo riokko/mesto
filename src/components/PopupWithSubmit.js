@@ -7,15 +7,30 @@ class PopupWithSubmit extends Popup {
         this._submitButton = this._popup.querySelector('.popup__submit-button');
     }
 
-    eventHandler() {
-        this._handleSubmit();
+    eventHandler = async () => {
+        try {
+            await this._handleSubmit();
+            this.close();
+            this.resolve();
+        } catch(e) {
+            console.log(e);
+            this.reject();
+        }
+    }
+
+    open() {
+        super.open();
+        return new Promise((resolve, reject) => {
+            this.resolve = resolve;
+            this.reject = reject;
+        });
     }
     setEventListeners() {
         super.setEventListeners();
-        this._submitButton.addEventListener('click', this.eventHandler.bind(this));
+        this._submitButton.addEventListener('click', this.eventHandler);
     }
 
-    myDynamicHandlerChanger(callback) {
+    handlerChanger(callback) {
         this._handleSubmit = callback;
     }
 

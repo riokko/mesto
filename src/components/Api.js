@@ -1,8 +1,7 @@
 class Api {
-    constructor(config) {
-        this._url = config.url;
+    constructor() {
         this._token = '0ffb4600-da7b-4a50-ad82-6478aae818d7';
-        this._mimeType = config.mimeType || 'application/json';
+        this._mimeType = 'application/json';
     }
 
     _getHeaders() {
@@ -16,15 +15,15 @@ class Api {
         return Promise.reject(`Ошибка: ${response.status}`);
     }
 
-    async getUserInfo() {
-        const response = await fetch(this._url, {
+    async getUserInfo(url) {
+        const response = await fetch(url, {
             headers: this._getHeaders(),
         });
         return this._defaultRequestReturn(response);
     }
 
-    async patchUserInfo({ name, about }) {
-        const response = await fetch(this._url, {
+    async patchUserInfo(url, { name, about }) {
+        const response = await fetch(url, {
             headers: this._getHeaders(),
             method: 'PATCH',
             body: JSON.stringify({
@@ -35,15 +34,15 @@ class Api {
         return this._defaultRequestReturn(response);
     }
 
-    async getInitialCards() {
-        const response = await fetch(this._url, {
+    async getInitialCards(url) {
+        const response = await fetch(url, {
             headers: this._getHeaders(),
         });
         return this._defaultRequestReturn(response);
     }
 
-    async addCard({ name, link }) {
-        const response = await fetch(this._url, {
+    async addCard(url, { name, link }) {
+        const response = await fetch(url, {
             headers: this._getHeaders(),
             method: 'POST',
             body: JSON.stringify({
@@ -58,6 +57,27 @@ class Api {
         const response = await fetch(url, {
             headers: this._getHeaders(),
             method: 'DELETE',
+        });
+        return this._defaultRequestReturn(response);
+    }
+
+    async editAvatar(url, avatar) {
+        const response = await fetch(url, {
+            headers: this._getHeaders(),
+            method: 'PATCH',
+            body: JSON.stringify({ avatar }),
+        });
+        if (response.ok && response.status === 200) {
+            return response.json();
+        } else {
+            throw await response.json();
+        }
+    }
+
+    async like(url, method) {
+        const response = await fetch(url, {
+            headers: this._getHeaders(),
+            method: method,
         });
         return this._defaultRequestReturn(response);
     }

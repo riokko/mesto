@@ -70,6 +70,25 @@
                 </form>
             </div>
         </div>
+        <div class="popup popup_type_edit-avatar-form">
+            <div class="popup__container">
+                <button class="popup__close-button" type="button" aria-label="Закрыть форму"></button>
+                <h3 class="popup__title">Обновить аватар</h3>
+                <form class="form" name="edit-profile" method="GET" novalidate>
+                    <label class="form__label">
+                        <input
+                            class="form__input form__input_type_avatar"
+                            id="avatar-url-input"
+                            value=""
+                            name="avatar"
+                            required
+                        />
+                        <span class="form__error" id="avatar-url-input-error"></span>
+                    </label>
+                    <button type="submit" class="form__button form__button_disabled" disabled>Сохранить</button>
+                </form>
+            </div>
+        </div>
         <div class="popup popup_type_new-item-form">
             <div class="popup__container">
                 <button class="popup__close-button" type="button" aria-label="Закрыть форму"></button>
@@ -121,7 +140,7 @@
         </div>
         <template class="template-element">
             <li class="element">
-                <button class="element__delete" type="button" aria-label="Удалить место"></button>
+                <button class="element__delete element__delete_hidden" type="button" aria-label="Удалить место"></button>
                 <img src="#" alt="" class="element__photo" />
                 <div class="element__title">
                     <h2 class="element__name"></h2>
