@@ -18,10 +18,8 @@ const editAvatar = document.querySelector('.profile__user-pic');
 const inputName = profileForm.querySelector('.form__input_type_name');
 const inputProfession = profileForm.querySelector('.form__input_type_profession');
 
-const photoPopup = new PopupWithImage('.popup_type_photo');
-
 const api = new Api();
-
+const photoPopup = new PopupWithImage('.popup_type_photo');
 const removeCardPopup = new PopupWithSubmit('.popup_type_card-remove');
 
 const cardsList = new Section(
@@ -65,7 +63,6 @@ const editAvatarPopup = new PopupWithForm('.popup_type_edit-avatar-form', ({ ava
         })
 );
 
-
 function cardRenderer(cardData, shouldPrepend) {
     const newCard = new Card({
         ...cardData,
@@ -96,10 +93,6 @@ function listenEditButton(obj) {
     inputProfession.value = obj.profession.textContent;
 }
 
-new FormValidator(document.querySelector('.popup_type_new-item-form'), classesMap).enableValidation();
-new FormValidator(document.querySelector('.popup_type_edit-profile-form'), classesMap).enableValidation();
-new FormValidator(document.querySelector('.popup_type_edit-avatar-form'), classesMap).enableValidation();
-
 cardsList.renderItem();
 
 api.getInitialCards('https://mesto.nomoreparties.co/v1/cohort-15/cards/')
@@ -119,3 +112,7 @@ api.getUserInfo('https://mesto.nomoreparties.co/v1/cohort-15/users/me/')
 openEditProfileButton.addEventListener('click', openEditProfileHandler);
 openAddCardButton.addEventListener('click', addCardPopup.open.bind(addCardPopup));
 editAvatar.addEventListener('click', editAvatarPopup.open.bind(editAvatarPopup));
+
+new FormValidator(document.querySelector('.popup_type_new-item-form'), classesMap).enableValidation();
+new FormValidator(document.querySelector('.popup_type_edit-profile-form'), classesMap).enableValidation();
+new FormValidator(document.querySelector('.popup_type_edit-avatar-form'), classesMap).enableValidation();
