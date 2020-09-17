@@ -65,6 +65,7 @@ const editAvatarPopup = new PopupWithForm('.popup_type_edit-avatar-form', ({ ava
         })
 );
 
+
 function cardRenderer(cardData, shouldPrepend) {
     const newCard = new Card({
         ...cardData,
