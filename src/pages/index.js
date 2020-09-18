@@ -52,20 +52,23 @@ const openEditProfileHandler = () => {
     editProfilePopup.open();
 };
 
-const addCardPopup = new PopupWithForm('.popup_type_new-item-form', (cardData) =>
-    api.addCard(cardData)
-        .then((data) => {
-            cardRenderer(data);
-        })
-        .catch(logger)
-);
+const addCardPopup = new PopupWithForm('.popup_type_new-item-form', async (cardData) => {
+    const data = await api.addCard(cardData);
+    cardRenderer(data);
+});
 
-const editAvatarPopup = new PopupWithForm('.popup_type_edit-avatar-form', ({ avatar }) =>
-    api.editAvatar(avatar)
-        .then((data) => {
-            userInfo.setUserInfo(data);
-        })
-);
+const editAvatarPopup = new PopupWithForm('.popup_type_edit-avatar-form', async ({ avatar }) => {
+    const data = await api.editAvatar(avatar);
+    userInfo.setUserInfo(data);
+});
+
+(async () => {
+    const [cards, userData] = await Promise.all([api.getInitialCards(), api.getUserInfo()]);
+    cards.forEach((card) => {
+        cardRenderer(card, true);
+    });
+    userInfo.setUserInfo(userData);
+})();
 
 function cardRenderer(cardData, shouldPrepend) {
     const newCard = new Card({
@@ -81,12 +84,7 @@ function cardRenderer(cardData, shouldPrepend) {
             return removeCardPopup.open();
         },
         ownerId: userInfo.getUserId(),
-        handleLikeCard: () =>
-            api.like(
-                `${cardData._id}`,
-                newCard.getLikesState() ? 'DELETE' : 'PUT'
-            )
-    });
+        handleLikeCard: () => api.like(`${cardData._id}`,newCard.getLikesState() ? 'DELETE' : 'PUT')});
     const cardElement = newCard.getView();
 
     cardsList.addItem(cardElement, shouldPrepend);
@@ -98,20 +96,6 @@ function listenEditButton(obj) {
 }
 
 cardsList.renderItem();
-
-api.getInitialCards()
-    .then((cards) => {
-        cards.forEach((card) => {
-            cardRenderer(card, true);
-        });
-    })
-    .catch(logger);
-
-api.getUserInfo()
-    .then((data) => {
-        userInfo.setUserInfo(data);
-    })
-    .catch(logger);
 
 openEditProfileButton.addEventListener('click', openEditProfileHandler);
 openAddCardButton.addEventListener('click', addCardPopup.open.bind(addCardPopup));
