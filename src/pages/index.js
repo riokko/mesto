@@ -12,7 +12,8 @@ import logger from '../utils/logger.js';
 import PopupWithSubmit from '../components/PopupWithSubmit';
 
 const apiConfig = {
-    token: '0ffb4600-da7b-4a50-ad82-6478aae818d7'
+    token: '0ffb4600-da7b-4a50-ad82-6478aae818d7',
+    url: 'https://mesto.nomoreparties.co/v1/cohort-15/',
 }
 
 const openEditProfileButton = document.querySelector('.profile__edit-button');
@@ -64,10 +65,10 @@ const editAvatarPopup = new PopupWithForm('.popup_type_edit-avatar-form', async 
 
 (async () => {
     const [cards, userData] = await Promise.all([api.getInitialCards(), api.getUserInfo()]);
+    userInfo.setUserInfo(userData);
     cards.forEach((card) => {
         cardRenderer(card, true);
     });
-    userInfo.setUserInfo(userData);
 })();
 
 function cardRenderer(cardData, shouldPrepend) {

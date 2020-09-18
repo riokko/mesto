@@ -1,7 +1,7 @@
 class Api {
-    constructor(config) {
-        this._token = config.token;
-        this._baseUrl = 'https://mesto.nomoreparties.co/v1/cohort-15/';
+    constructor({token, url }) {
+        this._token = token;
+        this._baseUrl = url;
         this._mimeType = 'application/json';
     }
 
