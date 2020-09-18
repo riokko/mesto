@@ -1,6 +1,7 @@
 class Api {
-    constructor() {
-        this._token = '0ffb4600-da7b-4a50-ad82-6478aae818d7';
+    constructor(config) {
+        this._token = config.token;
+        this._baseUrl = 'https://mesto.nomoreparties.co/v1/cohort-15/';
         this._mimeType = 'application/json';
     }
 
@@ -15,15 +16,15 @@ class Api {
         return Promise.reject(`Ошибка: ${response.status}`);
     }
 
-    async getUserInfo(url) {
-        const response = await fetch(url, {
+    async getUserInfo() {
+        const response = await fetch(`${this._baseUrl}users/me/`, {
             headers: this._getHeaders(),
         });
         return this._defaultRequestReturn(response);
     }
 
-    async patchUserInfo(url, { name, about }) {
-        const response = await fetch(url, {
+    async patchUserInfo({ name, about }) {
+        const response = await fetch(`${this._baseUrl}users/me/`, {
             headers: this._getHeaders(),
             method: 'PATCH',
             body: JSON.stringify({
@@ -34,15 +35,15 @@ class Api {
         return this._defaultRequestReturn(response);
     }
 
-    async getInitialCards(url) {
-        const response = await fetch(url, {
+    async getInitialCards() {
+        const response = await fetch(`${this._baseUrl}cards/`, {
             headers: this._getHeaders(),
         });
         return this._defaultRequestReturn(response);
     }
 
-    async addCard(url, { name, link }) {
-        const response = await fetch(url, {
+    async addCard({ name, link }) {
+        const response = await fetch(`${this._baseUrl}cards/`, {
             headers: this._getHeaders(),
             method: 'POST',
             body: JSON.stringify({
@@ -61,8 +62,8 @@ class Api {
         return this._defaultRequestReturn(response);
     }
 
-    async editAvatar(url, avatar) {
-        const response = await fetch(url, {
+    async editAvatar(avatar) {
+        const response = await fetch(`${this._baseUrl}users/me/avatar`, {
             headers: this._getHeaders(),
             method: 'PATCH',
             body: JSON.stringify({ avatar }),

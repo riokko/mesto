@@ -11,6 +11,10 @@ import { classesMap } from '../utils/constants.js';
 import logger from '../utils/logger.js';
 import PopupWithSubmit from '../components/PopupWithSubmit';
 
+const apiConfig = {
+    token: '0ffb4600-da7b-4a50-ad82-6478aae818d7',
+}
+
 const openEditProfileButton = document.querySelector('.profile__edit-button');
 const openAddCardButton = document.querySelector('.profile__add-button');
 const profileForm = document.querySelector('[name="edit-profile"]');
@@ -18,7 +22,7 @@ const editAvatar = document.querySelector('.profile__user-pic');
 const inputName = profileForm.querySelector('.form__input_type_name');
 const inputProfession = profileForm.querySelector('.form__input_type_profession');
 
-const api = new Api();
+const api = new Api(apiConfig);
 const photoPopup = new PopupWithImage('.popup_type_photo');
 const removeCardPopup = new PopupWithSubmit('.popup_type_card-remove');
 
@@ -39,7 +43,7 @@ const userInfo = new UserInfo({
 });
 
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile-form', async (userData) => {
-    const data = await api.patchUserInfo('https://mesto.nomoreparties.co/v1/cohort-15/users/me/', userData);
+    const data = await api.patchUserInfo(userData);
     userInfo.setUserInfo(data);
 });
 
@@ -49,7 +53,7 @@ const openEditProfileHandler = () => {
 };
 
 const addCardPopup = new PopupWithForm('.popup_type_new-item-form', (cardData) =>
-    api.addCard('https://mesto.nomoreparties.co/v1/cohort-15/cards/', cardData)
+    api.addCard(cardData)
         .then((data) => {
             cardRenderer(data);
         })
@@ -57,7 +61,7 @@ const addCardPopup = new PopupWithForm('.popup_type_new-item-form', (cardData) =
 );
 
 const editAvatarPopup = new PopupWithForm('.popup_type_edit-avatar-form', ({ avatar }) =>
-    api.editAvatar('https://mesto.nomoreparties.co/v1/cohort-15/users/me/avatar', avatar)
+    api.editAvatar(avatar)
         .then((data) => {
             userInfo.setUserInfo(data);
         })
@@ -95,7 +99,7 @@ function listenEditButton(obj) {
 
 cardsList.renderItem();
 
-api.getInitialCards('https://mesto.nomoreparties.co/v1/cohort-15/cards/')
+api.getInitialCards()
     .then((cards) => {
         cards.forEach((card) => {
             cardRenderer(card, true);
@@ -103,7 +107,7 @@ api.getInitialCards('https://mesto.nomoreparties.co/v1/cohort-15/cards/')
     })
     .catch(logger);
 
-api.getUserInfo('https://mesto.nomoreparties.co/v1/cohort-15/users/me/')
+api.getUserInfo()
     .then((data) => {
         userInfo.setUserInfo(data);
     })
