@@ -54,10 +54,18 @@ class Api {
         return this._defaultRequestReturn(response);
     }
 
-    async removeCard(url) {
-        const response = await fetch(url, {
+    async removeCard(cardId) {
+        const response = await fetch(`${this._baseUrl}cards/${cardId}`, {
             headers: this._getHeaders(),
             method: 'DELETE',
+        });
+        return this._defaultRequestReturn(response);
+    }
+
+    async like(cardId, method) {
+        const response = await fetch(`${this._baseUrl}cards/likes/${cardId}`, {
+            headers: this._getHeaders(),
+            method: method,
         });
         return this._defaultRequestReturn(response);
     }
@@ -73,14 +81,6 @@ class Api {
         } else {
             throw await response.json();
         }
-    }
-
-    async like(url, method) {
-        const response = await fetch(url, {
-            headers: this._getHeaders(),
-            method: method,
-        });
-        return this._defaultRequestReturn(response);
     }
 }
 

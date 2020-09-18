@@ -12,7 +12,7 @@ import logger from '../utils/logger.js';
 import PopupWithSubmit from '../components/PopupWithSubmit';
 
 const apiConfig = {
-    token: '0ffb4600-da7b-4a50-ad82-6478aae818d7',
+    token: '0ffb4600-da7b-4a50-ad82-6478aae818d7'
 }
 
 const openEditProfileButton = document.querySelector('.profile__edit-button');
@@ -76,14 +76,14 @@ function cardRenderer(cardData, shouldPrepend) {
         },
         handleRemoveCard: () => {
             removeCardPopup.handlerChanger( () =>
-                api.removeCard(`https://mesto.nomoreparties.co/v1/cohort-15/cards/${cardData._id}`)
+                api.removeCard(`${cardData._id}`)
             );
             return removeCardPopup.open();
         },
         ownerId: userInfo.getUserId(),
         handleLikeCard: () =>
             api.like(
-                `https://mesto.nomoreparties.co/v1/cohort-15/cards/likes/${cardData._id}`,
+                `${cardData._id}`,
                 newCard.getLikesState() ? 'DELETE' : 'PUT'
             )
     });
